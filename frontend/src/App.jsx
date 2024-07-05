@@ -9,6 +9,7 @@ function App() {
     jb: '',
   });
   const [reply, setReply] = useState(''); // Initialize reply state
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
@@ -24,10 +25,10 @@ function App() {
     const formData = new FormData();
     formData.append('jd', data.jb);
     formData.append('pdfFile', pdfile);
-
+    setIsLoading(true);
     console.log(import.meta.env.VITE_BASE_URL);
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/upload`, formData)
-
+    setIsLoading(false);
     if (response.data.success) {
       setReply(response.data.message);
     } else {
@@ -65,7 +66,9 @@ function App() {
     <button type="submit">Submit</button>
   </form>
   <div className='reply'>
-    {reply && <p>{reply}</p>}
+  {isLoading && <div className="loading-animation"></div>} 
+  {reply && <p>{reply}</p>}
+  
   </div>
 </div>
     
