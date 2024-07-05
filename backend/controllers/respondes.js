@@ -35,10 +35,9 @@ Finally, provide a concise profile summary that highlights the candidate's key s
 Resume: ${text}
 
 Job Description: ${jd}
-
+ensuring that all the required information is included in the string specially the !MissingKeywords.                         
 Please provide your response in one single string having the structure 
-{ { "ATS score": "%", "MissingKeywords:[]", "Profile Summary": "" } }
-ensuring that all the required information is included in the string specially the missing keywords.                         `
+{ { "ATS score": "%", "MissingKeywords:[]", "Profile Summary": "" } }                      `
         let reply = await generateText(input_prompt);
         //console.log(reply);
         return res.status(200).send({
